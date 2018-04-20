@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "rm -rf build && mkdir build && babel src -d build && rollup -c",
-    "examples": "cd examples && babel text.jsx -d text",
+    "examples": "cd examples && babel simplebar.jsx -d simplebar",
     "rem-pretest": "rm -rf build && mkdir build && rollup -f umd -n d3 -o build/d3-foo.js -- index.js",
     "test": "babel-tape-runner test/**/*-test.js",
     "rem-prepublish": "npm run test && uglifyjs build/d3-foo.js -c -m -o build/d3-foo.min.js",
