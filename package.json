@@ -1,0 +1,44 @@
+{
+  "name": "d3-jsx",
+  "version": "0.1.0",
+  "description": "A d3.js module that adds JSX support",
+  "keywords": [
+    "d3",
+    "d3-module"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "build/d3-jsx.js",
+  "jsnext:main": "index",
+  "homepage": "https://github.com/d3-jsx/d3-jsx",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d3-jsx/d3-jsx.git"
+  },
+  "scripts": {
+    "build": "rm -rf build && mkdir build && babel src -d build && rollup -c",
+    "examples": "cd examples && babel text.jsx -d text",
+    "rem-pretest": "rm -rf build && mkdir build && rollup -f umd -n d3 -o build/d3-foo.js -- index.js",
+    "test": "babel-tape-runner test/**/*-test.js",
+    "rem-prepublish": "npm run test && uglifyjs build/d3-foo.js -c -m -o build/d3-foo.min.js",
+    "rem0-postpublish": "zip -j build/d3-foo.zip -- LICENSE README.md build/d3-foo.js build/d3-foo.min.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-jsx": "^2.0.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-tape-runner": "^2.0.1",
+    "jsdom": "^11.3.0",
+    "rollup": "0.27",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "tape": "4",
+    "uglify-js": "2"
+  },
+  "dependencies": {
+    "d3-selection": "1",
+    "d3-transition": "^1.1.0"
+  }
+}
