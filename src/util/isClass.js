@@ -6,5 +6,5 @@ import Component from '../Component';
  */
 export default function isClass(func) {
     return typeof func === 'function'
-        && func.prototype instanceof Component;
+        && func.prototype instanceof d3.Component;
 }
