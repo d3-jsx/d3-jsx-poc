@@ -6,10 +6,6 @@ var width = 500;
 
 var height = 400;
 
-var x = d3.scaleLinear().range([0, width]).domain([0, d3.max(data, function (d) {
-  return d.value;
-})]);
-
 var svg = d3.select("body").appendJSX({
   elementName: "svg",
   attributes: {
@@ -21,8 +17,9 @@ var svg = d3.select("body").appendJSX({
 }).selectAll("g").data(data).enter().appendJSX({
   elementName: Bars,
   attributes: {
+    data: data,
     height: 40,
-    x: x,
+    dimensions: [width, height],
     horizontal: true
   },
   children: null

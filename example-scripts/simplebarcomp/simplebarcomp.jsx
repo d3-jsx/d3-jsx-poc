@@ -11,15 +11,12 @@ const data = [
 
 const width = 500;
 
-const height = 400;      
-
-const x = d3.scaleLinear()
-          .range([0, width])
-          .domain([0, d3.max(data, (d) => d.value)]);                       
+const height = 400;                           
 
 let svg = d3.select("body")
 .appendJSX(<svg className="chart" width={width} height={height}></svg>)
 .selectAll("g")
 .data(data)
 .enter()
-  .appendJSX( <Bars height={40} x={x} horizontal={true}/>);
+  .appendJSX( <Bars data={data} height={40} 
+    dimensions={[width, height]} horizontal={true}/>);

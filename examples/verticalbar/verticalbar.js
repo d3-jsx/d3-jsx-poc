@@ -24,8 +24,9 @@ var svg = d3.select("body").appendJSX({
 }).selectAll("g").data(data).enter().appendJSX({
   elementName: Bars,
   attributes: {
+    data: data,
+    dimensions: [width, height],
     height: 40,
-    x: x,
     horizontal: false
   },
   children: null

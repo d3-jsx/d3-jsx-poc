@@ -6,20 +6,26 @@ export class Bars extends Component{
   }
 
   render() {
+    const horizontal = this.props.horizontal;
     const barHeight = this.props.height | 50;
-    const x = this.props.x;
-    if(this.props.horizontal){
+    const [width, height] = this.props.dimensions || [500, 400];
+    const scale = d3.scaleLinear()
+      .range([0, horizontal ? width: height])
+      .range([0, height])
+      .domain([0, d3.max(this.props.data, (d) => d.value)]);
+    
+    if(horizontal){
     return (
       <g transform={(d, i) => { return 'translate(0,' + i*barHeight + ')';}}>
-      <rect width={(d) => x(d.value)} height={barHeight - 1}></rect>
-      <text x={(d)=>x(d.value)-10} y={ barHeight / 2 } dy=".35em">{(d) => d.value}</text>
+      <rect width={(d) => scale(d.value)} height={barHeight - 1}></rect>
+      <text x={(d)=>scale(d.value)-10} y={ barHeight / 2 } dy=".35em">{(d) => d.value}</text>
     </g>   
     );
   } else {
     return (
-      <g transform={(d, i) => { return 'translate(' + i*barHeight + ',0)';}}>
-      <rect height={(d) => x(d.value)} width={barHeight - 1}></rect>
-      <text y={(d)=>x(d.value)-10} x={ barHeight / 2 } dx=".35em">{(d) => d.value}</text>
+      <g transform={(d, i) => { return 'translate(' + i*barHeight + ','+ (height-scale(d.value)).toString() +')';}}>
+      <rect height={(d) => scale(d.value)} width={barHeight - 1}></rect>
+      <text y={(d)=>scale(d.value)-10} x={ barHeight / 2 } dx=".35em">{(d) => d.value}</text>
     </g>   
     );
   }
