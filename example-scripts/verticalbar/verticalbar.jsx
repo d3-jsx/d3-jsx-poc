@@ -9,9 +9,9 @@ const data = [
   {name: "Kwon",     value: 42}
 ];
 
-const width = 800;
+const width = 500;
 
-const height = 1000;      
+const height = 400;      
 
 const x = d3.scaleLinear()
           .range([0, height])
@@ -20,10 +20,9 @@ const x = d3.scaleLinear()
 // const x = d3.scale.ordional()
 //   .rangeRoundBands([0, width], 0.2);
 
-let svg = d3.select("body").appendJSX(<svg className="chart" width={width} height={height}></svg>);
-
-
-const bar = svg.selectAll("g")
+let svg = d3.select("body")
+.appendJSX(<svg className="chart" width={width} height={height}></svg>)
+.selectAll("g")
 .data(data)
 .enter()
   .appendJSX( <Bars height={40} x={x} horizontal={false}/>);

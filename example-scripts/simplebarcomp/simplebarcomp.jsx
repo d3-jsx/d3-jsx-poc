@@ -9,18 +9,17 @@ const data = [
   {name: "Kwon",     value: 42}
 ];
 
-const width = 1000;
+const width = 500;
 
-const height = 800;      
+const height = 400;      
 
 const x = d3.scaleLinear()
           .range([0, width])
           .domain([0, d3.max(data, (d) => d.value)]);                       
 
-let svg = d3.select("body").appendJSX(<svg className="chart" width={width} height={height}></svg>);
-
-
-const bar = svg.selectAll("g")
+let svg = d3.select("body")
+.appendJSX(<svg className="chart" width={width} height={height}></svg>)
+.selectAll("g")
 .data(data)
 .enter()
   .appendJSX( <Bars height={40} x={x} horizontal={true}/>);
