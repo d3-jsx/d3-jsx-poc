@@ -6,6 +6,13 @@ var width = 500;
 
 var height = 400;
 
+var x = d3.scaleLinear().range([0, height]).domain([0, d3.max(data, function (d) {
+  return d.value;
+})]);
+
+// const x = d3.scale.ordional()
+//   .rangeRoundBands([0, width], 0.2);
+
 var svg = d3.select("body").appendJSX({
   elementName: "svg",
   attributes: {
@@ -18,9 +25,9 @@ var svg = d3.select("body").appendJSX({
   elementName: Bars,
   attributes: {
     data: data,
-    height: 40,
     dimensions: [width, height],
-    horizontal: true
+    height: 40,
+    horizontal: false
   },
   children: null
 });
